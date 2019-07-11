@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <title>Economic and Social Wellbeing of Women</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <script src="//d3js.org/d3.v5.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="./animate.css" rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./visCSS/districts.css">
+    <link rel="stylesheet" href="./visCSS/sunburst.css">
+    <script src="granim.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <script src="./js/tools/selectize/js/standalone/selectize.js"></script>
+    <link rel="stylesheet" type="text/css" href="./js/tools/selectize/css/selectize.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js"></script>
+
+    <meta content="District Level Overview | PCSW (ESW)" property="og:site_name">
+    <meta content="District Level Overview | PCSW (ESW)" property="og:title">
+    <meta content="website" property="og:type">
+    <meta property="og:image" itemprop="image" content="https://interactive.pcsw-punjab.pk/esw/resources/thumb.jpg">
+    <meta content="This website allows users to explore the data collected by PCSW in the ESW project through interactive visualizations" property="og:description">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@plotreeViz">
+    <meta name="twitter:title" content="District Level Overview | PCSW (ESW)">
+    <meta name="twitter:description" content="This website allows users to explore the data collected by PCSW in the ESW project through interactive visualizations">
+    <meta name="twitter:image:src" content="https://interactive.pcsw-punjab.pk/esw/resources/thumb.jpg">
+  </head>
+
+  <body>
+    <div class='applicationWrap' onclick="void(0)">
+      <div class="nav_container">
+        <div id="overlay_menu">
+          <div class="contentContain">
+            <div class="navbar">
+              <div class="pcsw">
+                <img src="./resources/logo.png" alt="Punjab Commission on the status of women" class="pcswlogo"></img>
+                <div>
+                  <p class="pcswName">PUNJAB COMMISSION ON THE</p>
+                  <p class="pcswName">STATUS OF WOMEN</p>
+                </div>
+              </div>
+              <img id="closeIcon" class="nav_menu_icon" src="./resources/close.png"/>
+            </div>
+            <div class="nav_section">
+              <div class="nav_link_section">
+                <a class="nav_link" href="./sunburst.html">
+                  <p id="link1" class="link_text">LABOR FORCE AND EMPLOYMENT</p>
+                </a>
+                <a class="nav_link" href="./vaw.html">
+                  <p id="link2" class="link_text vaw">VIOLENCE AGAINST WOMEN</p>
+                </a>
+                <a class="nav_link" href="./youth.html">
+                  <p id="link3" class="link_text youth" >YOUTH</p>
+                </a>
+              </div>
+              <div class="nav_link_section">
+                <a class="nav_link" href="./financialInc.html">
+                  <p id="link4" class="link_text finInc">FINANCIAL INCLUSION</p>
+                </a>
+                <a class="nav_link" href="./minorities.html">
+                  <p id="link5" class="link_text min">MINORITIES</p>
+                </a>
+                <a class="nav_link" href="./districts.html">
+                  <p id="link6" class="link_text districtLevel">DISTRICT LEVEL OVERVIEW</p>
+                </a>
+              </div>
+              <div class="logos_section">
+                <p class="logos_section_title">OUR PARTNERS</p>
+                <div class="logos">
+                  <img class="punjabgov" src="./resources/govpunjab.png"></img>
+                  <img class="dfid" src="./resources/logo-53-dfid.png"></img>
+                  <img class="unfpa" src="./resources/unfpa_logo.png"></img>
+                </div>
+                <p class="copyright">Punjab Commission on the Status of Women | © 2019</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contentContain">
+          <div class="navbar">
+            <div class="pcsw">
+              <img src="./resources/logo.png" alt="Punjab Commission on the status of women" class="pcswlogo"></img>
+              <div>
+                <p class="pcswName">PUNJAB COMMISSION ON THE</p>
+                <p class="pcswName">STATUS OF WOMEN</p>
+              </div>
+            </div>
+            <img id="hamburger" class="nav_menu_icon" src="./resources/menu.png"/>
+          </div>
+          <div class="visualization_title_container">
+            <p class="proj_title">District Analysis</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="inverted_page">
+        <div class="vis_wrapper">
+          <div class="contentContain">
+            <div class="text_container">
+              <p class="section_text">This page allows readers to explore district level results from the ESW Survey 2018</p>
+            </div>
+            <div class="text_container">
+              <p class="section_text">The Punjab bubble map will help readers to make district level comparisons of up-to two indicators (mapped to bubble size and color depth). The interactive visualization is also equipped with two indicator range filters to study districts of interest.</p>
+            </div>
+            <div class="bubble_wrapper vis_parent orange_bar" data-aos="fade-in">
+              <div class="text_container">
+                <h2 class="vis_heading">Punjab Bubble Map</h2>
+              </div>
+              <div id="bubble_container_main">
+                <div id="bubble_container">
+                  <svg>
+                  </svg>
+                </div>
+                <div id="bubble_controls">
+                  <div id="thwoInputsContain">
+                    <p class="subSectionHeading">Select Indicators</p>
+                    <div class="input-legend-container">
+                      <div class="input-legend-container__legend">
+                        <div class="r-legend">
+                        </div>
+                      </div>
+                      <div class="input-legend-container__input">
+                        <p class="indicatorType">Radius Indicator</p>
+                        <div class="input">
+                          <select id="twoIndOne">
+                            <option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>
+                            <option value="mercedes">Mercedes</option>
+                            <option value="audi">Audi</option>
+                          </select>
+                        </div>
+                        <div style="width: 100%; margin-bottom: 20px;">
+                          <input type="text" id="indOneMinMax" name="indicatorOne_range" value="" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="input-legend-container" style="display: none;">
+                      <div class="input-legend-container__legend">
+                        <div class="c-legend">
+                        </div>
+                      </div>
+                      <div class="input-legend-container__input">
+                        <p class="indicatorType">Color Indicator</p>
+                        <div class="input">
+                          <select id="twoIndTwo">
+                            <option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>
+                            <option value="mercedes">Mercedes</option>
+                            <option value="audi">Audi</option>
+                          </select>
+                        </div>
+                        <div style="width: 100%;  margin-bottom: 20px;">
+                          <input type="text" id="indTwoMinMax" name="indicatorTwo_range" value="" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="footer_contain">
+        <div class="district_link_container">
+          <img class="footer_link_image" data-aos="fade-left" data-aos-delay="50" data-aos-offset="50" data-aos-duration="1000" src="./resources/pcsw6.jpg"></img>
+          <p class="view_districts pcsw" data-aos="fade-in" data-aos-delay="800">Back to Home</p>
+        </div>
+        <footer class="footer">
+          <p class="footer_item pcsw_footer">Punjab Commision on the Status of Women</p>
+          <div class="pcsw_contact">
+            <p class="officeContact footer_item"><i class="fas fa-map-marker-alt"></i>88 Shadman II, Lahore</p>
+            <p class="officeContact footer_item"><i class="fas fa-phone"></i>+92 42 99268000-4</p>
+          </div>
+          <div class="socIcons footSocIcons">
+            <i class="fab footer_item fa-facebook-f socIcon facebookSoc"></i>
+            <i class="fab footer_item fa-twitter socMidIcon socIcon twitterSoc"></i>
+            <i class="fas footer_item fa-link socIcon webSoc"></i>
+          </div>
+          <canvas id="granim-canvas-footer"></canvas>
+          <div class="footer_partners">
+            <img class="footer_icon" src="./resources/footerComm.png"></img>
+            <img class="footer_icon" src="./resources/footerGov.png"></img>
+            <img class="footer_icon_small" src="./resources/logo-53-dfid.png"></img>
+            <img class="footer_icon_small" src="./resources/unfpa_logo.png"></img>
+            <img class="footer_icon_small" src="./resources/ESW-Hover.png"></img>
+            <div class="designBy">
+              <p class="plotree">Designed by Plotree Info Design</p>
+              <img class="footer_icon_p plotree" src="./resources/logoAlone.svg"></img>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script src="./js/bubbleMap.js"></script>
+
+
+    <script>
+      var granimInstance = new Granim({
+         element: '#granim-canvas-footer',
+         name: 'granim',
+         direction: 'diagonal',
+         opacity: [1, 1],
+         states : {
+             "default-state": {
+                 gradients: [
+                     ['#EE5930', '#FFA726'],
+                     ['#8e24aa', '#ba68c8'],
+                     ['#BC3626', '#F6AF32']
+                 ]
+             }
+         }
+      });
+
+      $(window).on("load", function() {
+        AOS.init();
+      });
+
+      function resize() {
+        if (window.innerWidth > 875) {
+          $('.footer_link_image').attr('data-aos', 'fade-left');
+        }
+        else {
+          $('.footer_link_image').attr('data-aos', 'fade-in');
+        }
+      }
+      resize();
+      window.onresize = resize;
+
+      $(".facebookSoc").click(function() {
+        window.open('https://www.facebook.com/pcswpb', '_blank');
+      });
+
+      $(".twitterSoc").click(function() {
+        window.open('https://twitter.com/pcswpb', '_blank');
+      });
+
+      $(".webSoc").click(function() {
+        window.open('https://pcsw.punjab.gov.pk/', '_blank');
+      });
+
+      $(".plotree").click(function() {
+        window.open('https://plotree.studio', '_blank');
+      });
+
+      $(".sunburstButt").click(function() {
+        window.location = "./sunburst.html";
+      });
+
+      $(".vaw").click(function() {
+        window.location = "./vaw.html";
+      });
+
+      $(".districtLevel").click(function() {
+        window.location = "./districts.html";
+      });
+
+      $(".finInc").click(function() {
+        window.location = "./financialInc.html";
+      });
+
+      $(".min").click(function() {
+        window.location = "./minorities.html";
+      });
+
+      $(".youth").click(function() {
+        window.location = "./youth.html";
+      });
+
+      $(".pcsw").click(function() {
+        window.location = "./";
+      });
+
+    </script>
+
+    <script>
+      var bubbleMap;
+      var mapData;
+      var defaultMapIndicators = ['Character Certificate'];
+
+      Promise.all([d3.csv('./js/files/police_services.csv'),d3.json('./js/files/PunjabBound.geojson'),d3.json('./js/files/PunjDistNoIsl.geojson')])
+      .then((data)=>{
+        mapData = data[0];
+
+        bubbleMap = getBubbleMapCreator(data[0], data[1], data[2],'#bubble_container svg', '.r-legend', '.c-legend');
+        bubbleMap.createMap(defaultMapIndicators[0], defaultMapIndicators[0]);
+
+        $("#indOneMinMax").ionRangeSlider({
+            type: "double",
+            grid: true,
+            min: 1,
+            max: 100,
+            from: 1,
+            to: 100,
+            onChange : function(data){
+              console.log(data);
+              //var indId = data.input[0].dataset.indId;
+              var indicator = $('#twoIndOne').val();
+              bubbleMap.addNumericFilter(data.from, data.to, indicator);
+              bubbleMap.executeFilter();
+            }
+        });
+
+        var rFilter = $("#indOneMinMax").data("ionRangeSlider");
+
+        $("#indTwoMinMax").ionRangeSlider({
+            type: "double",
+            grid: true,
+            min: 1,
+            max: 100,
+            from: 1,
+            to: 100,
+            onChange : function(data){
+              console.log(data);
+              //var indId = data.input[0].dataset.indId;
+              var indicator = $('#twoIndTwo').val();
+              bubbleMap.addNumericFilter(data.from, data.to, indicator);
+              bubbleMap.executeFilter();
+            }
+        });
+
+        var cFilter = $("#indTwoMinMax").data("ionRangeSlider");
+
+        initSelectize(mapData.columns,
+          {District : true, Division : true},
+          ['#twoIndOne'],
+          'map-indicators',
+          function(e){
+            var rIndicator = $('#twoIndOne').val();
+            var cIndicator = $('#twoIndOne').val();
+
+            var minR = Math.floor(bubbleMap.getMinIndVal(rIndicator));
+            var maxR = Math.ceil(bubbleMap.getMaxIndVal(rIndicator));
+            rFilter.update({
+              min : minR,
+              max : maxR,
+              from : minR,
+              to : maxR
+            });
+
+            var minC = Math.floor(bubbleMap.getMinIndVal(cIndicator));
+            var maxC = Math.ceil(bubbleMap.getMaxIndVal(cIndicator));
+            cFilter.update({
+              min : minC,
+              max : maxC,
+              from : minC,
+              to : maxC
+            });
+
+            bubbleMap.removeAllFilters();
+            bubbleMap.executeFilter();
+            bubbleMap.createCircle(rIndicator, cIndicator);
+
+          },
+          defaultMapIndicators,
+          function(e){
+            var minR = Math.floor(bubbleMap.getMinIndVal(defaultMapIndicators[0]));
+            var maxR = Math.ceil(bubbleMap.getMaxIndVal(defaultMapIndicators[0]));
+            rFilter.update({
+              min : minR,
+              max : maxR,
+              from : minR,
+              to : maxR
+            });
+
+            var minC = Math.floor(bubbleMap.getMinIndVal(defaultMapIndicators[1]));
+            var maxC = Math.ceil(bubbleMap.getMaxIndVal(defaultMapIndicators[1]));
+            cFilter.update({
+              min : minC,
+              max : maxC,
+              from : minC,
+              to : maxC
+            });
+          }
+        );
+      });
+
+      function initSelectize(options, excludeObj, selectors, groupName, cb, defaultVals, initFunc, optionVals){
+
+        options = options.filter(function(d){
+          return !excludeObj[d];
+        });
+
+        /*options = options.map((d)=>{return {name : d, text : d, value : d, disable : false};});*/
+
+        selectors.forEach(function(d,i){
+          var el = $(d);
+
+          el.attr('data-group', groupName);
+
+          optionVals = optionVals || options;
+
+          var elOptions = options.map(
+              function(o,j){
+                if(defaultVals.includes(o) && o !== defaultVals[i]){
+                  return {name : o, text : o, value : optionVals[j], disable : true};
+                }else{
+                  return {name : o, text : o, value : optionVals[j], disable : false};
+                }
+              }
+            );
+          el.selectize({
+            sortField : 'text',
+            options : elOptions,
+            disabledField: 'disable'
+          });
+
+          el[0].selectize.setValue(defaultVals[i], true);
+
+          el.on('change', function(e){
+
+            var selected = e.target.value;
+
+            if(!selected){
+              return;
+            }
+
+            var selectGroup = Array.from(document.querySelectorAll(`[data-group=${groupName}]`));
+
+            selectGroup = selectGroup.filter((d)=>d !== this);
+
+            selectGroup.forEach((e)=>{
+              Object.keys(e.selectize.options).forEach((d)=>{
+                var disable = d === selected;
+                e.selectize.updateOption(d,{disable : disable, value : d, name : d, text : d});
+              });
+            });
+            cb(e);
+          });
+
+          initFunc();
+        });
+      }
+
+    </script>
+  </body>
+</html>
